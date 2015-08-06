@@ -3,10 +3,14 @@ import sys
 import os
 import signal
 import logging
+import psutil
+
 
 """
    pid_control.py A Python tool to control processes in Unix like systems by PID.
    Aug, 2015 Steven D Irvin 
+
+   WARNING: You need to install psutil on the system and run this as $ sudo python pid_control.py
 """
 
 
@@ -16,7 +20,7 @@ def pid_control(pids):
     """
     for process_id in pids:
         try:
-            p = psutil.Process(process_id)
+            p = psutil.Process(int(process_id))
             p.terminate()  #or p.kill()
             logger.info('Stopped process PID {0}'.format(process_id))
         except OSError:
@@ -27,13 +31,14 @@ def get_pids():
         get PIDs for processes on Unix like systems.
     """
     try:
-        pids = os.system('ps -ef \| grep \'/usr/bin/ceilometer\' \| grep -v grep \| awk \'{print $2 > \"ceilometer.pid\"}\'')
+        pids = os.system('./list_pids.sh')
     except OSError:
         logger.error('ERROR: Could not get list of PIDs.')
     with open ("ceilometer.pid", 'rt') as pid_file:
         pid_list = []
-        for processs_id in pid_file.split_lines()
+        for process_id in pid_file.read().splitlines():
             pid_list.append(process_id)
+    print('Found PID list {0}'.format(', '.join(pid_list)))
     return pid_list
 
 
