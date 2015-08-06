@@ -4,6 +4,8 @@ import os
 import signal
 import logging
 import shlex
+import subprocess
+
 
 """
    pid_control.py A Python tool to control processes in Unix like systems by PID.
