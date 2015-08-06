@@ -3,6 +3,7 @@ import sys
 import os
 import signal
 import logging
+import shlex
 
 """
    pid_control.py A Python tool to control processes in Unix like systems by PID.
@@ -27,7 +28,9 @@ def get_pids():
         get PIDs for processes on Unix like systems.
     """
     try:
-        pids = os.system('ps -ef \| grep \'/usr/bin/ceilometer\' \| grep -v grep \| awk \'{print $2 > \"ceilometer.pid\"}\'')
+        args = 'ps -ef | grep \'/usr/bin/ceilometer\' | grep -v grep | awk \'{print $2 > \"ceilometer.pid\"}\''
+        cmd =  shlex.split(args)
+        pids = os.system(cmd)
     except OSError:
         logger.error('ERROR: Could not get list of PIDs.')
     with open ("ceilometer.pid", 'rt') as pid_file:
