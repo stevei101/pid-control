@@ -32,7 +32,7 @@ def get_pids():
         logger.error('ERROR: Could not get list of PIDs.')
     with open ("ceilometer.pid", 'rt') as pid_file:
         pid_list = []
-        for processs_id in pid_file.split_lines():
+        for processs_id in pid_file.splitlines():
             pid_list.append(process_id)
     return pid_list
 
