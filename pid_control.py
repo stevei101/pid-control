@@ -30,7 +30,7 @@ def get_pids():
     try:
         args = 'ps -ef | grep \'/usr/bin/ceilometer\' | grep -v grep | awk \'{print $2 > \"ceilometer.pid\"}\''
         cmd = shlex.split(args)
-        pids = subprocess.check_output(cmd, *, input=None, stdin=None, stderr=None, shell=False, universal_newlines=False, timeout=None)
+        pids = subprocess.check_output(cmd, input=None, stdin=None, stderr=None, shell=False, universal_newlines=False, timeout=None)
     except OSError:
         logger.error('ERROR: Could not get list of PIDs.')
     with open ("ceilometer.pid", 'rt') as pid_file:
