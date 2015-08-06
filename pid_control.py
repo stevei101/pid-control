@@ -3,6 +3,8 @@ import sys
 import os
 import signal
 import logging
+import psutil
+
 
 """
    pid_control.py A Python tool to control processes in Unix like systems by PID.
