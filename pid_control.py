@@ -27,7 +27,7 @@ def get_pids():
         get PIDs for processes on Unix like systems.
     """
     try:
-        pids = os.system(ps -ef | grep '/usr/bin/ceilometer' | grep -v grep | awk '{print $2 > "ceilometer.pid"}')
+        pids = os.system('ps -ef \| grep \'/usr/bin/ceilometer\' \| grep -v grep \| awk \'{print $2 > \"ceilometer.pid\"}\'')
     except OSError:
         logger.error('ERROR: Could not get list of PIDs.')
     with open ("ceilometer.pid", 'rt') as pid_file:
