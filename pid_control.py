@@ -18,7 +18,7 @@ def pid_control(pids):
     """
     for process_id in pids:
         try:
-            p = psutil.Process(process_id)
+            p = psutil.Process(int(process_id))
             p.terminate()  #or p.kill()
             logger.info('Stopped process PID {0}'.format(process_id))
         except OSError:
