@@ -27,7 +27,7 @@ def get_pids():
         get PIDs for processes on Unix like systems.
     """
     try:
-        pids = os.system(./list_pids.sh)
+        pids = os.system('./list_pids.sh')
     except OSError:
         logger.error('ERROR: Could not get list of PIDs.')
     with open ("ceilometer.pid", 'rt') as pid_file:
