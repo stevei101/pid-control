@@ -37,7 +37,7 @@ def get_pids():
         pid_list = []
         for process_id in pid_file.read().splitlines():
             pid_list.append(process_id)
-    print('Found PID list {0}'.format(', '.join(pid_list)))
+    logger.info('Found PID list {0}'.format(', '.join(pid_list)))
     return pid_list
 
 

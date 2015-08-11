@@ -30,7 +30,7 @@ def processes_restart(pids):
                             ' -d -v --log-dir=/var/log/ceilometer-api' +
                             ' --config-file /etc/ceilometer/ceilometer.conf'
             args = shlex.split(command_line)
-            print(args)
+            logger.info(args)
             p = subprocess.Popen(args) # Success!
             logger.info('Restart process PID {0}'.format(process_id))
         except OSError:
@@ -44,7 +44,7 @@ def retrieve_processes():
         pid_list = []
         for process_id in pid_file.read().splitlines():
             pid_list.append(process_id)
-    print('Found PID list {0}'.format(', '.join(pid_list)))
+    logger.info('Found PID list {0}'.format(', '.join(pid_list)))
     return pid_list
 
 if __name__ == "__main__":
