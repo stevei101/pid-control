@@ -23,12 +23,12 @@ def processes_restart(pids):
     for process_id in pids:
         try:
             if not 'api' in process_id:
-                command_line = 'sudo /usr/bin/python ' + process_id +
-                               ' --config-file /etc/ceilometer/ceilometer.conf'
+                command_line = 'sudo /usr/bin/python ' + process_id \
+                               + ' --config-file /etc/ceilometer/ceilometer.conf'
             else:
-                command_line = 'sudo /usr/bin/python ' + process_id +
-                            ' -d -v --log-dir=/var/log/ceilometer-api' +
-                            ' --config-file /etc/ceilometer/ceilometer.conf'
+                command_line = 'sudo /usr/bin/python ' + process_id \
+                            + ' -d -v --log-dir=/var/log/ceilometer-api'\
+                            + ' --config-file /etc/ceilometer/ceilometer.conf'
             args = shlex.split(command_line)
             logger.info(args)
             p = subprocess.Popen(args) # Success!
