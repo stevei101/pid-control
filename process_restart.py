@@ -31,7 +31,6 @@ def processes_restart(pids):
                             ' --config-file /etc/ceilometer/ceilometer.conf'
             args = shlex.split(command_line)
             print(args)
-            p = psutil.Process(int(process_id))
             p = subprocess.Popen(args) # Success!
             logger.info('Restart process PID {0}'.format(process_id))
         except OSError:
