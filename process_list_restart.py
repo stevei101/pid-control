@@ -36,7 +36,8 @@ def retrieve_processes():
     with open ("ceilometer.processes", 'rt') as pid_file:
         pid_list = []
         for process_id in pid_file.read().splitlines():
-            pid_list.append(process_id)
+            if process_id not in pid_list:
+                pid_list.append(process_id)
     logger.info('Found PID list {0}'.format(', '.join(pid_list)))
     return pid_list
 
