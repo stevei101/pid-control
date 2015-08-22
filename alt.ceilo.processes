@@ -1,0 +1,6 @@
+# ceilo.processes
+nohup /usr/bin/python /usr/local/bin/ceilometer-agent-central --config-file /etc/ceilometer/ceilometer.conf &
+nohup /usr/bin/python /usr/local/bin/ceilometer-agent-notification --config-file /etc/ceilometer/ceilometer.conf &
+nohup /usr/bin/python /usr/local/bin/ceilometer-api -d -v --log-dir=/var/log/ceilometer-api --config-file /etc/ceilometer/ceilometer.conf &
+nohup /usr/bin/python /usr/local/bin/ceilometer-agent-compute --config-file /etc/ceilometer/ceilometer.conf &
+
